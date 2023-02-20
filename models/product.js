@@ -2,14 +2,17 @@ module.exports = (mongoose) => {
     const Product = mongoose.model(
       'product',
       mongoose.Schema({
-        productName: {
-          type: String
+        productId: {
+          type: Number
         },
         PLUcode: {
           type: Number
         },
         barcode: {
           type: Number
+        },
+        productName: {
+          type: String
         },
         description: {
           type: String

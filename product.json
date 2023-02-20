@@ -1,0 +1,182 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "product API",
+      "description": "Product API",
+      "version": "1.0.0"
+    },
+    "host": "sifundo-cse341-personal5.onrender.com",
+    "basePath": "/",
+    "schemes": [
+      "https",
+      "http"
+    ],
+    "paths": {
+      "/api-docs": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/product/": {
+        "get": {
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Successful"
+            }
+          }
+        },
+        "post": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "example": "any"
+                  },
+                  "PLUcode": {
+                    "example": "any"
+                  },
+                  "barcode": {
+                    "example": "any"
+                  },
+                  "productName": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "packsize": {
+                    "example": "any"
+                  },
+                  "quantity": {
+                    "example": "any"
+                  },
+                  "unitPrice": {
+                    "example": "any"
+                  },
+                  "sellingPrice": {
+                    "example": "any"
+                  }
+
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Created successfully"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/product/{productId}": {
+        "get": {
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful"
+            }
+          }
+        },
+        "put": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                    "productId": {
+                        "example": "any"
+                      },
+                      "PLUcode": {
+                        "example": "any"
+                      },
+                      "barcode": {
+                        "example": "any"
+                      },
+                      "productName": {
+                        "example": "any"
+                      },
+                      "description": {
+                        "example": "any"
+                      },
+                      "packsize": {
+                        "example": "any"
+                      },
+                      "quantity": {
+                        "example": "any"
+                      },
+                      "unitPrice": {
+                        "example": "any"
+                      },
+                      "sellingPrice": {
+                        "example": "any"
+                      }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Update succeful"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        },
+        "delete": {
+          "description": "",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Delete successful"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      }
+    }
+  }

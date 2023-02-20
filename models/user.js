@@ -1,18 +1,25 @@
 module.exports = (mongoose) => {
     const userSchema = mongoose.Schema({
+      userId: {
+        type: Number
+      },
       username: {
+        type: String
+      },
+      firstname: {
+        type: String
+      },
+      lastname: {
         type: String
       },
       password: {
         type: String
       },
-      displayName: {
-        type: String
-      },
+     
       email: {
         type: String
       },
-      phoneNumber: {
+      phone: {
         type: String
       },
       designation: {
@@ -20,6 +27,5 @@ module.exports = (mongoose) => {
      }
       
     });
-  
     return mongoose.model('user', userSchema);
   };

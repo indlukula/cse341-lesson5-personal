@@ -17,9 +17,8 @@
           "description": "",
           "parameters": [],
           "responses": {}
-        }
       },
-      "/product/": {
+      "/product": {
         "get": {
           "description": "",
           "produces": [
@@ -179,4 +178,4 @@
         }
       }
     }
-  }
+    }}

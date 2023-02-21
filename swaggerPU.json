@@ -21,6 +21,13 @@
       "http"
     ],
     "paths": {
+      "/api-docs":{
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {}
+        }
+      },
       "/product": {
         "get": {
           "tags": ["product"],
@@ -28,17 +35,15 @@
           "description": "List of all products",
           "operationId": "getProducts",
           "produces": ["application/json"],
-          "parameters": [],
-          
+          "parameters": [],    
           "responses": {
             "200": {
-              "description": "Successful"
-                          
+              "description": "Successful"                
               }
             }
-            
-          }
-        }, 
+           },
+          
+         
          "post": {
          "tags": ["product"],
          "summary": "Creater product",
@@ -68,7 +73,7 @@
             "description": "Something went wrong"
           }
          }
-        }
+         }
       },
       
       "/user": {
@@ -157,9 +162,10 @@
               }
             }
           }
-        },
         
-        "delete": {
+      },
+      
+      "delete": {
           "description": "",
           "parameters": [
             {
@@ -177,9 +183,8 @@
               "description": "Internal Server Error"
             }
           }
-        }
-          }
         },
+          
         "definitions": {
           "user": {
             "type":"object",
@@ -199,6 +204,7 @@
                 "type":"string"
               }
             }
+           
           },
           "product": {
             "type":"object",
@@ -236,6 +242,10 @@
               }
             }
            }
-          }
         }
+      }
+    }  
+        
+} 
+
       

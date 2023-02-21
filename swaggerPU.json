@@ -32,15 +32,11 @@
           
           "responses": {
             "200": {
-              "description": "Successful",
-              "schema": {
-                "$ref": "#/definitions/product"
-            
+              "description": "Successful"
+                          
               }
-            },
-            "400": {
-              "description": "Product name invalid"
             }
+            
           }
         }, 
          "post": {

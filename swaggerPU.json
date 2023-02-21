@@ -28,11 +28,7 @@
           "description": "List of all products",
           "operationId": "getProducts",
           "produces": ["application/json"],
-          "parameters": [{
-            "schema": {
-              "$ref": "#/definitions/product"
-            }
-          }],
+          "parameters": [],
           
           "responses": {
             "200": {

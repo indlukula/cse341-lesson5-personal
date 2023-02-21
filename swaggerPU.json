@@ -21,13 +21,7 @@
       "http"
     ],
     "paths": {
-      "/api-docs":{
-        "get": {
-          "description": "",
-          "parameters": [],
-          "responses": {}
-        }
-      },
+     
       "/product": {
         "get": {
           "tags": ["product"],
@@ -57,17 +51,44 @@
           "description": "Created product object",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/product"
+            "type":"object",
+            "properties": {
+             
+              "PLUcode":{
+                "type":"integer",
+                "format": "int64"
+              },
+              "barcode":{
+                "type":"integer",
+                "format": "int64"
+              },
+              "productName":{
+                "type":"string"
+              },
+              "category":{
+                "type":"string"
+              },
+              "packsize":{
+                "type":"number"
+              },
+              "quantity":{
+                "type":"number"
+              },
+              "unitPrice":{
+                "type":"number"
+              },
+              "sellingPrice":{
+                "type":"number"
+              }
+            }
           }
          }
 
          ],
          "responses": {
           "201": {
-            "description": "Created successfully",
-            "schema":{
-              "$ref": "#/definitions/product"
-            }
+            "description": "Created successfully"
+         
           },
           "401": {
             "description": "Something went wrong"
@@ -185,7 +206,7 @@
           }
         },
           
-        "definitions": {
+      "definitions": {
           "user": {
             "type":"object",
             "required": ["password", "username"],

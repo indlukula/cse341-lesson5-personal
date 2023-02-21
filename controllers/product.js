@@ -1,49 +1,56 @@
-const db = require('../models');
-const product = require('../models/product');
-const User = db.user;
+const mongodb = require('../config/db.config');
+const ObjectId = require('mongodb').ObjectId;
 
-exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.productName || !req.body.PLUcode || !req.body.barcode || !req.body.description || !req.body.category || !req.body.packsize || !req.body.quantity || !req.body.unitPrice || !req.body.seelingPrice) {
-    res.status(400).send({ message: 'Content can not be empty!' });
-    return;
+const getAll = async (req, res) => {
+  const result = await mongodb.getDb().db().collection('product').find();
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
+};
+
+const getSingle = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const result = await mongodb.getDb().db().collection('product').find({ _id: userId });
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
+};
+
+const createProduct = async (req, res) => {
+  const product = {
+    PLUcode: req.body.PLUcode,
+    barcode: req.body.barcode,
+    productName: req.body.productName,
+    category: req.body.category,
+    packsize: req.body.packsize,
+    quantity: req.body.quantity,
+    unitprice: req.body.unitprice,
+    sellingPrice: req.body.sellingPrice
+  };
+  const response = await mongodb.getDb().db().collection('product').insertOne(product);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while creating the contact.');
   }
-
-  const product = new product(req.body);
-  product
-    .save()
-    .then((data) => {
-      console.log(data);
-      res.status(201).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while creating the product.'
-      });
-    });
 };
 
-exports.getAll = (req, res) => {
-  product.find({})
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving products.'
-      });
-    });
+const deleteContact = async (req, res) => {
+  const productId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('product').remove({ _id: productId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+  }
 };
 
-exports.getProduct = (req, res) => {
-  const productName = req.params.productName;
-  User.find({ productName: productName })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving product.'
-      });
-    });
+module.exports = {
+  getAll,
+  getSingle,
+  createProduct,
+  deleteContact
 };

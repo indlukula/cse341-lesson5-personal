@@ -1,7 +1,7 @@
-module.exports = (mongoose) => {
-    const Product = mongoose.model(
+module.exports = (mongodb) => {
+    const Product = mongodb.model(
       'product',
-      mongoose.Schema({
+      mongodb.Schema({
         productId: {
           type: Number
         },

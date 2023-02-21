@@ -1,48 +1,55 @@
-const db = require('../models');
-const User = db.user;
+const mongodb = require('../config/db.config');
+const ObjectId = require('mongodb').ObjectId;
 
-exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.username || !req.body.password) {
-    res.status(400).send({ message: 'No empty content!' });
-    return;
+const getAll = async (req, res) => {
+  const result = await mongodb.getDb().db().collection('user').find();
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+  });
+};
+
+const getSingle = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const result = await mongodb.getDb().db().collection('user').find({ _id: userId });
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
+};
+
+const createUser = async (req, res) => {
+  const user = {
+    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    password: req.body.password,
+    email: req.body.email,
+    phone: req.body.phone,
+    designation: req.body.designation
+  };
+  const response = await mongodb.getDb().db().collection('user').insertOne(user);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while creating the contact.');
   }
-  
-  const user = new User(req.body);
-  user
-    .save()
-    .then((data) => {
-      console.log(data);
-      res.status(201).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while creating the user.'
-      });
-    });
 };
 
-exports.getAll = (req, res) => {
-  User.find({})
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving users.'
-      });
-    });
+const deleteUser = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const response = await mongodb.getDb().db().collection('contacts').remove({ _id: userId }, true);
+  console.log(response);
+  if (response.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+  }
 };
 
-exports.getUser = (req, res) => {
-  const username = req.params.username;
-  User.find({ username: username })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving users.'
-      });
-    });
+module.exports = {
+  getAll,
+  getSingle,
+  createUser,
+  deleteUser
 };

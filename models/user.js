@@ -1,5 +1,5 @@
-module.exports = (mongoose) => {
-    const userSchema = mongoose.Schema({
+module.exports = (mongodb) => {
+    const userSchema = mongodb.Schema({
       userId: {
         type: Number
       },
@@ -25,7 +25,7 @@ module.exports = (mongoose) => {
       designation: {
         type: String
      }
-      
+     
     });
-    return mongoose.model('user', userSchema);
+    return mongodb.model('user', userSchema);
   };

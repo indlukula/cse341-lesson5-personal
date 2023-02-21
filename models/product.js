@@ -14,9 +14,7 @@ module.exports = (mongoose) => {
         productName: {
           type: String
         },
-        description: {
-          type: String
-        },
+        
         category: {
           type: String
         },

@@ -5,7 +5,7 @@ const userController = require('../controllers/product');
 
 router.get('/', userController.getAll);
 
-router.get('/:productName', userController.getProduct);
+router.get('/:productId', userController.getProduct);
 
 router.post('/', userController.create);
 

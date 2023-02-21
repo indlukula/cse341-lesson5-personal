@@ -28,11 +28,16 @@
           "description": "List of all products",
           "operationId": "getProducts",
           "produces": ["application/json"],
-          "parameters": [{
-            "schema": {
-              "$ref": "#/definitions/product"
-            }
-          }],
+          "parameters": [
+            {
+              "name": "productName",
+              "in": "path",
+              "description": "Product name works as an id",
+              "required": true,
+              "type":"array"
+              
+              }
+          ],
           
           "responses": {
             "200": {
@@ -60,7 +65,7 @@
           "description": "Created product object",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/product"
+            "type": "object"
           }
          }
 

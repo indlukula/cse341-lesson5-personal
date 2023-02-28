@@ -17,11 +17,11 @@
       }
     ],
     "schemes": [
-      "https",
-      "http"
+      "http",
+      "https"
     ],
     "paths": {
-     
+      
       "/product": {
         "get": {
           "tags": ["product"],

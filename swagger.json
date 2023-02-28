@@ -113,14 +113,14 @@
               "schema": {
                 "type":"object",
                 "properties": {
-             
-                  "username":{
+                  
+                  "userName":{
                     "type":"string"
                   },
-                  "firstname":{
+                  "firstName":{
                     "type":"string"
                   },
-                  "lastname":{
+                  "lastName":{
                     "type":"string"
                   },
                   "password":{
@@ -239,13 +239,13 @@
                 "type":"integer",
                 "format": "string"
               },
-              "username": {
+              "userName": {
                 "type":"string"
               },
               "password": {
                 "type":"string"
               },
-              "firstname": {
+              "firstName": {
                 "type":"string"
               }
             }

@@ -1,4 +1,4 @@
-const mongodb = require('../config/db.config');
+const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
@@ -26,7 +26,7 @@ const createProduct = async (req, res) => {
     category: req.body.category,
     packsize: req.body.packsize,
     quantity: req.body.quantity,
-    unitprice: req.body.unitprice,
+    unitPrice: req.body.unitPrice,
     sellingPrice: req.body.sellingPrice
   };
   const response = await mongodb.getDb().db().collection('product').insertOne(product);

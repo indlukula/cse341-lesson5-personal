@@ -3,19 +3,18 @@ module.exports = (mongodb) => {
       userId: {
         type: Number
       },
-      username: {
+      userName: {
         type: String
       },
-      firstname: {
+      firstName: {
         type: String
       },
-      lastname: {
+      lastName: {
         type: String
       },
       password: {
         type: String
       },
-     
       email: {
         type: String
       },

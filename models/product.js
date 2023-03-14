@@ -1,37 +1,34 @@
-module.exports = (mongodb) => {
-    const Product = mongodb.model(
-      'product',
-      mongodb.Schema({
-        productId: {
+module.exports = (mongoose) => {
+  const productSchema =  mongoose.Schema({
+      productId: {
+        type: Number
+      },
+      PLUcode: {
+        type: Number
+      },
+      barcode: {
+        type: Number
+      },
+      productName: {
+        type: String
+      },
+      
+      category: {
+        type: String
+      },
+      packsize: {
           type: Number
-        },
-        PLUcode: {
+      },
+      quantity: {
           type: Number
-        },
-        barcode: {
+      },
+      unitprice: {
           type: Number
-        },
-        productName: {
-          type: String
-        },
-        
-        category: {
-          type: String
-        },
-        packsize: {
-            type: Number
-        },
-        quantity: {
-            type: Number
-        },
-        unitPrice: {
-            type: Number
-        },
-        sellingPrice: {
-            type: Number
-        }
-      })
-    );
-    
-    return Product;
-  };
+      },
+      sellingPrice: {
+          type: Number
+      }
+    });
+  
+  return mongoose.model('product', productSchema);
+};
